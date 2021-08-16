@@ -1,13 +1,317 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+/* DEFAULT STYLES */
+
+*,
+*::after,
+*::before {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --main-hue: 200;
+
+  --color-primary: hsl(var(--main-hue), 65%, 50%);
+  --color-primary-transparent-1: hsla(var(--main-hue), 65%, 50%, 0.1);
+  --color-primary-transparent-2: hsla(var(--main-hue), 65%, 50%, 0.2);
+  --color-primary-dark: hsl(var(--main-hue), 65%, 35%);
+  --color-primary-light: hsl(var(--main-hue), 65%, 55%);
+  --color-primary-lighter: hsl(var(--main-hue), 65%, 65%);
+
+  --color-white: #fff;
+  --color-black: hsl(var(--main-hue), 20%, 10%);
+  --color-black-transparent-1: hsla(var(--main-hue), 20%, 10%, 0.1);
+
+  --color-grey-darker: hsl(var(--main-hue), 20%, 20%);
+  --color-grey-dark: hsl(var(--main-hue), 20%, 30%);
+  --color-grey: hsl(var(--main-hue), 20%, 60%);
+  --color-grey-light: hsl(var(--main-hue), 35%, 85%);
+  --color-grey-lighter: hsl(var(--main-hue), 35%, 95%);
+
+  /* 
+    COLOR PALETTE
+  
+  
+    --color-primary: hsl(220, 65%, 50%);
+    --color-primary-dark: hsl(220, 65%, 35%);
+    --color-primary-light: hsl(220, 65%, 65%);
+  
+    --color-white: #fff;
+    --color-black: hsl(220, 20%, 15%);
+  
+    --color-grey-darker: hsl(220, 20%, 20%);
+    --color-grey-dark: hsl(220, 20%, 30%);
+    --color-grey: hsl(hsl(220, 20%, 40%));
+    --color-grey-light: hsl(hsl(220, 35%, 85%));
+    --color-grey-lighter: hsl(hsl(220, 35%, 95%));
+  */
+
+  --font-primary: 'Roboto', sans-serif;
+  --font-secondary: 'Righteous', cursive;
+
+  --space-sm: 0.25rem;
+  --space-med: 0.5rem;
+  --space-lg: 1rem;
+  --space-xl: 2rem;
+  --space-xxl: 4rem;
+}
+
+body {
+  font-family: var(--font-primary);
+}
+
+input {
+  outline: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-grey-lighter);
+}
+
+@media (max-width: 62em) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+.header-1 {
+  font-size: 2.5rem;
+  font-family: var(--font-secondary);
+  color: var(--color-grey-darker);
+}
+
+.header-2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-grey-darker);
+}
+
+.header-3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-grey-darker);
+}
+
+.header-4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-grey-darker);
+}
+
+.header-5 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-grey-dark);
+}
+
+.p-1 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-grey-dark);
+  line-height: 1.5;
+}
+
+.p-2 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #595959;
+}
+
+button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+/* ICON BUTTON */
+
+.icon-button {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
+
+  border-radius: 0.25rem;
+
+  transition: all 300ms;
+  cursor: pointer;
+}
+
+.icon-button__badge {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+
+  width: 0.65rem;
+  height: 0.65rem;
+
+  border-radius: 50%;
+
+  background-color: tomato;
+}
+
+.icon-button svg {
+  fill: var(--color-grey-darker);
+}
+
+.icon-button--lg > svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.icon-button--med > svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.icon-button--sm {
+  border: 1px solid var(--color-grey-darker);
+}
+
+.icon-button--sm > svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.icon-button:hover {
+  background-color: var(--color-grey-lighter);
+}
+
+.icon-button:active {
+  background-color: var(--color-grey-light);
+}
+
+/* BUTTON */
+
+.button {
+  position: relative;
+  overflow: hidden;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.button--contained {
+  background-color: var(--color-primary-light);
+  color: var(--color-grey-lighter);
+}
+
+.button--contained:active {
+  background-color: var(--color-primary-lighter);
+}
+
+.button--outlined {
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.button--outlined:hover {
+  background-color: var(--color-primary-transparent-1);
+}
+
+.button--outlined:active {
+  background-color: var(--color-primary-transparent-2);
+}
+
+.button__text,
+.button__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: all 300ms;
+}
+
+.button__text {
+  font-size: 1.2rem;
+  font-weight: 400;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.button__icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  transform: translate(-50%, -5rem);
+}
+
+.button__loading-spinner {
+  margin: 0 auto;
+}
+
+.button:hover .button__text {
+  transform: translate(-50%, 5rem);
+}
+
+.button:hover .button__icon {
+  transform: translate(-50%, -50%);
+}
+
+/* LOADING SPINNER */
+
+.loading-spinner {
+  border: 0.15rem solid var(--color-primary-light);
+  border-left-color: var(--color-grey-lighter);
+  border-radius: 50%;
+
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner--sm {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.loading-spinner--med {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.loading-spinner--lg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* ICON LINK */
+
+.icon-link svg {
+  width: 3.8rem;
+  height: 3.8rem;
+  fill: var(--color-grey-dark);
+  transition: transform 300ms;
+  cursor: pointer;
+}
+
+.icon-link:hover svg {
+  fill: var(--color-grey-darker);
+  transform: scale(1.15);
+}
+
+/* ANIMATIONS */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-enter,
+.fade-exit-active {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
 }

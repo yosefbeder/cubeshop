@@ -1,0 +1,155 @@
+.nav {
+  display: flex;
+  align-items: center;
+
+  z-index: 10;
+
+  background-color: var(--color-white);
+  height: 3.6rem;
+  border-bottom: 1px solid var(--color-grey);
+  padding: 0 var(--space-xxl);
+
+  margin-bottom: 0;
+
+  transition: margin 300ms;
+}
+
+.mobile-nav-button {
+  display: none;
+}
+
+.nav-links-container {
+  display: flex;
+  margin-left: var(--space-xxl);
+  margin-right: auto;
+}
+
+.nav-links-container > *:not(:last-child) {
+  margin-right: var(--space-lg);
+}
+
+.nav-link {
+  position: relative;
+  font-weight: 700;
+  color: var(--color-grey-light);
+  text-transform: uppercase;
+}
+
+.nav-link--sm {
+  font-size: 1rem;
+}
+
+.nav-link--med {
+  font-size: 1.2rem;
+}
+
+.nav-link--lg {
+  font-size: 1.4rem;
+}
+
+.nav-link::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: attr(data-hover);
+  color: var(--color-grey-darker);
+  border-bottom: 3px solid var(--color-grey-darker);
+  max-width: 0;
+  padding-bottom: 0.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 300ms;
+}
+
+.nav-link:hover::before,
+.nav-link--active::before {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    justify-content: space-between;
+  }
+
+  .nav-links-container {
+    display: none;
+  }
+
+  .mobile-nav-button {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    padding: 0 var(--space-lg);
+  }
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background-color: var(--color-white);
+  align-items: center;
+  justify-content: space-evenly;
+
+  height: 15rem;
+  border-bottom: 1px solid var(--color-grey);
+}
+
+@media (max-width: 900px) {
+  .mobile-nav {
+    display: flex;
+  }
+
+  .nav {
+    margin-bottom: -15rem;
+  }
+
+  .nav--mobile-nav-visible {
+    margin-bottom: 0;
+  }
+}
+
+.cart-btn-container {
+  position: relative;
+}
+
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 1.85rem;
+  height: 1.45rem;
+  margin: 0.4rem 0.2rem;
+}
+
+.menu-icon__bar,
+.menu-icon::before,
+.menu-icon::after {
+  height: 3px;
+  background-color: var(--color-grey-darker);
+}
+
+.menu-icon__bar {
+  transition: opacity 300ms;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  transition: transform 300ms;
+}
+
+.menu-icon--active .menu-icon__bar {
+  opacity: 0;
+}
+
+.menu-icon--active::before {
+  transform: translateY(calc(0.725rem - 3px)) rotate(-45deg);
+}
+
+.menu-icon--active::after {
+  transform: translateY(-0.725rem) rotate(45deg);
+}
