@@ -1,0 +1,39 @@
+.main {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  max-width: 60rem;
+  width: 100%;
+
+  margin: var(--space-xl) auto;
+}
+
+.main > h2:first-child {
+  margin-bottom: var(--space-lg);
+}
+
+.main > p:nth-child(2) {
+  margin-bottom: var(--space-med);
+}
+
+@media (max-width: 62em) {
+  .main {
+    margin: 0;
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+.products-container {
+  margin-top: var(--space-xl);
+
+  flex: 1;
+
+  display: grid;
+  justify-content: center;
+
+  grid-template-columns: repeat(auto-fill, 14.25rem);
+  grid-auto-rows: 25rem;
+
+  gap: var(--space-lg);
+}
