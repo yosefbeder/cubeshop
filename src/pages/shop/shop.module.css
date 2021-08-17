@@ -9,11 +9,11 @@
   margin: var(--space-xl) auto;
 }
 
-.main > h2:first-child {
+.header {
   margin-bottom: var(--space-lg);
 }
 
-.main > p:nth-child(2) {
+.p {
   margin-bottom: var(--space-med);
 }
 

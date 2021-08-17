@@ -6,6 +6,7 @@ import { IoBag as CartIcon } from 'react-icons/io5';
 import MenuIcon from './MenIcon';
 import Bag from '../Bag/Bag';
 import { CSSTransition } from 'react-transition-group';
+import dummyBag from '../../../data/dummy-bag';
 
 const navLinksData = [
   { content: 'home', to: '/' },
@@ -27,20 +28,7 @@ const MobileNavbar = () => {
 const Navbar = () => {
   const [mobileNavbarIsShown, setMobileNavbarIsShown] = useState(false);
   const [isBagShown, setIsBagShown] = useState(false);
-  const [bagItems, setBagItems] = useState([
-    {
-      imgSrc: 'https://m.media-amazon.com/images/I/7130FoaoPWL._AC_SL1500_.jpg',
-      name: 'GAN 356 R S 3x3 Speed Cube',
-      price: 29.99,
-      quantity: 1,
-    },
-    {
-      imgSrc: 'https://m.media-amazon.com/images/I/71t-jTtsGcL._AC_SL1500_.jpg',
-      name: 'GAN 356 Air Master 3x3 Speed Cube',
-      price: 20.99,
-      quantity: 1,
-    },
-  ]);
+  const [bagItems, setBagItems] = useState(dummyBag);
 
   const closeBag = () => setIsBagShown(false);
 

@@ -56,7 +56,7 @@ const FooterSection: React.FC<FooterSectionProps> = ({
       >
         <Icon />
       </a>
-      <h5 className="header-5">{header}</h5>
+      <h4 className="header-4">{header}</h4>
       <p className="p-1">{content}</p>
     </div>
   );

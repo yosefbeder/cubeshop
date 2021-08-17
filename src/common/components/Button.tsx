@@ -17,13 +17,17 @@ const Button: React.FC<ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>> =
       variant = 'contained',
       isLoading = false,
       className,
+      disabled,
       ...buttonElProps
     } = props;
 
     return (
       <button
         {...buttonElProps}
-        className={`button button--${variant} ${className}`}
+        className={`button button--${variant} ${
+          isLoading && 'button--disabled'
+        } ${className}`}
+        disabled={isLoading}
       >
         {isLoading ? (
           <LoadingSpinner className="button__loading-spinner" />
