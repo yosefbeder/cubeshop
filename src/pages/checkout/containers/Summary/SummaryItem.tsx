@@ -18,10 +18,10 @@ const SummaryItem: React.FC<SummaryItemProps> = ({
   return (
     <div className={classes['summary-item']}>
       <img className={classes['summary-item__img']} src={imgSrc} alt={name} />
-      <p className={classes['summary-item__p']}>
+      <p className={`${classes['summary-item__p']} txt-primary`}>
         {name} x {quantity}
       </p>
-      <div className={classes['summary-item__price']}>
+      <div className={`${classes['summary-item__price']} txt-emphasize`}>
         {formatPrice('$', price)}
       </div>
     </div>

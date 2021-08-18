@@ -44,17 +44,10 @@
 }
 
 .summary-item__p {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--color-grey-dark);
-
   align-self: end;
 }
 
 .summary-item__price {
-  font-size: 1.2rem;
-  color: var(--color-grey-darker);
-
   align-self: start;
 }
 
@@ -69,13 +62,9 @@
 }
 
 .price-summary__group--sm {
-  font-size: 1rem;
-  color: var(--color-grey-dark);
   margin-bottom: var(--space-sm);
 }
 
 .price-summary__group--lg {
-  font-size: 1.2rem;
-  color: var(--color-grey-darker);
   margin-top: var(--space-med);
 }

@@ -20,8 +20,8 @@ const Product: React.FC<ProductProps> = ({ imgSrc, name, price }) => {
         <img className={classes.img} src={imgSrc} alt={name} />
       </div>
       <div className={classes.info}>
-        <div className={classes.name}>{name}</div>
-        <div className={classes.price}>{formatPrice('$', price)}</div>
+        <p className="txt-primary">{name}</p>
+        <p className="txt-emphasize">{formatPrice('$', price)}</p>
         <Button
           icon={CartIcon}
           isLoading={isLoading}

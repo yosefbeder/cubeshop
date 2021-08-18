@@ -29,8 +29,8 @@ const BagItem: React.FC<BagItemProps> = ({ imgSrc, name, price, quantity }) => {
         )}
       </div>
       <div className={classes.info}>
-        <span>{name}</span>
-        <span>{formatPrice('$', price)}</span>
+        <span className="txt-primary">{name}</span>
+        <span className="txt-emphasize">{formatPrice('$', price)}</span>
       </div>
       <div className={classes.actions}>
         <div className={classes['quantity-controller']}>

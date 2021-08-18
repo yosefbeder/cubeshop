@@ -10,7 +10,7 @@ const Summary = () => {
 
   return (
     <div className={classes.container}>
-      <h3 className={`header-3 ${classes.header}`}>Order summary</h3>
+      <h2 className={`header-2 ${classes.header}`}>Order summary</h2>
 
       <div className={classes['summary-items-list']}>
         {dummyBag.map((props, index) => (
@@ -20,19 +20,19 @@ const Summary = () => {
 
       <div className={classes['price-summary']}>
         <div
-          className={`${classes['price-summary__group']} ${classes['price-summary__group--sm']}`}
+          className={`${classes['price-summary__group']} ${classes['price-summary__group--sm']} txt-primary`}
         >
           <span>Subtotal</span>
           <span>{formatPrice('$', subtotal)}</span>
         </div>
         <div
-          className={`${classes['price-summary__group']} ${classes['price-summary__group--sm']}`}
+          className={`${classes['price-summary__group']} ${classes['price-summary__group--sm']} txt-primary`}
         >
           <span>Delivery</span>
           <span>{formatPrice('$', delivery)}</span>
         </div>
         <div
-          className={`${classes['price-summary__group']} ${classes['price-summary__group--lg']}`}
+          className={`${classes['price-summary__group']} ${classes['price-summary__group--lg']} txt-emphasize`}
         >
           <span>Total</span>
           <span>{formatPrice('$', subtotal + delivery)}</span>

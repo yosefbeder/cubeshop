@@ -14,7 +14,7 @@ const index = () => {
     <>
       <Navbar />
       <main className={classes.main}>
-        <h2 className={`header-2 ${classes.header}`}>Checkout</h2>
+        <h1 className={`header-1 ${classes.header}`}>Checkout</h1>
         <div className={classes.container}>
           <Elements stripe={stripePromise}>
             <Form />

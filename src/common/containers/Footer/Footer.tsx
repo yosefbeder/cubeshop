@@ -56,7 +56,7 @@ const FooterSection: React.FC<FooterSectionProps> = ({
       >
         <Icon />
       </a>
-      <h4 className="header-4">{header}</h4>
+      <h3 className="header-3">{header}</h3>
       <p className="p-1">{content}</p>
     </div>
   );
@@ -69,7 +69,7 @@ const Footer = () => {
         <FooterSection key={index} {...footerSection} />
       ))}
       <div className={classes['social-info']}>
-        <h3 className="header-3">Follow us on</h3>
+        <h2 className="header-2">Follow us on</h2>
         <div className={classes['links-container']}>
           {socialAccounts.map(({ icon: Icon, ...linkProps }, index) => (
             <IconLink key={index} {...linkProps}>

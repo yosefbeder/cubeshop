@@ -7,6 +7,7 @@ import MenuIcon from './MenIcon';
 import Bag from '../Bag/Bag';
 import { CSSTransition } from 'react-transition-group';
 import dummyBag from '../../../data/dummy-bag';
+import Logo from '../../components/Logo';
 
 const navLinksData = [
   { content: 'home', to: '/' },
@@ -66,7 +67,7 @@ const Navbar = () => {
         >
           <MenuIcon isActive={mobileNavbarIsShown} />
         </IconButton>
-        <h1 className="header-1">Cube Shop</h1>
+        <Logo />
         <div className={classes['nav-links-container']}>
           {navLinksData.map((navLinkData, index) => (
             <NavLink key={index} {...navLinkData} />

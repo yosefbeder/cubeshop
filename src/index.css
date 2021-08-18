@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@900&display=swap');
 /* DEFAULT STYLES */
 
 *,
@@ -50,7 +49,7 @@
   */
 
   --font-primary: 'Roboto', sans-serif;
-  --font-secondary: 'Righteous', cursive;
+  --font-secondary: 'Grandstander', cursive;
 
   --space-sm: 0.25rem;
   --space-med: 0.5rem;
@@ -84,25 +83,26 @@ input {
   }
 }
 
-.header-1 {
-  font-size: 2.5rem;
+.logo {
+  font-size: 2.8rem;
+  font-weight: 900;
   font-family: var(--font-secondary);
   color: var(--color-grey-darker);
 }
 
-.header-2 {
+.header-1 {
   font-size: 2.2rem;
   font-weight: 900;
   color: var(--color-grey-darker);
 }
 
-.header-3 {
+.header-2 {
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--color-grey-darker);
 }
 
-.header-4 {
+.header-3 {
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--color-grey-dark);
@@ -119,6 +119,20 @@ input {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-grey-dark);
+}
+
+.txt-primary {
+  font-size: 1rem;
+  font-weight: 400;
+
+  color: var(--color-grey-dark);
+}
+
+.txt-emphasize {
+  font-size: 1.2rem;
+  font-weight: 400;
+
+  color: var(--color-grey-darker);
 }
 
 button {

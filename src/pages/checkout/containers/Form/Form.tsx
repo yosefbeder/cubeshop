@@ -56,9 +56,9 @@ const Form = () => {
   return (
     <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
       <div className={classes['form-group']}>
-        <h3 className={`header-3 ${classes['form-group__text']}`}>
+        <h2 className={`header-2 ${classes['form-group__text']}`}>
           Customer information
-        </h3>
+        </h2>
         <Input
           {...register('firstName')}
           hasError={Boolean(errors.firstName)}
@@ -83,9 +83,9 @@ const Form = () => {
       </div>
 
       <div className={classes['form-group']}>
-        <h3 className={`header-3 ${classes['form-group__text']}`}>
+        <h2 className={`header-2 ${classes['form-group__text']}`}>
           Delivery information
-        </h3>
+        </h2>
         <Input
           {...register('address')}
           hasError={Boolean(errors.email)}
@@ -135,9 +135,9 @@ const Form = () => {
       </div>
 
       <div className={classes['form-group']}>
-        <h3 className={`header-3 ${classes['form-group__text']}`}>
+        <h2 className={`header-2 ${classes['form-group__text']}`}>
           Payment information
-        </h3>
+        </h2>
 
         <CardNumberElement
           options={getStripeInputOptions(true)}

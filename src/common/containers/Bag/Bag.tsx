@@ -26,7 +26,7 @@ const Bag: React.FC<BagProps> = ({ items, onClose, className }) => {
       } ${className}`}
     >
       <div className={classes.header}>
-        <h4 className="header-4">Your shopping bag</h4>
+        <h3 className="header-3">Your shopping bag</h3>
         <IconButton onClick={onClose}>
           <IoClose />
         </IconButton>
