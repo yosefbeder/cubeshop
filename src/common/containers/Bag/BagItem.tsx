@@ -34,15 +34,15 @@ const BagItem: React.FC<BagItemProps> = ({ imgSrc, name, price, quantity }) => {
       </div>
       <div className={classes.actions}>
         <div className={classes['quantity-controller']}>
-          <IconButton size="sm">
+          <IconButton variant="secondary">
             <PlusIcon />
           </IconButton>
           <span>{quantity}</span>
-          <IconButton size="sm">
+          <IconButton variant="secondary" disabled>
             <SubIcon />
           </IconButton>
         </div>
-        <IconButton>
+        <IconButton variant="tertiary">
           <TrashIcon />
         </IconButton>
       </div>

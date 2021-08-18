@@ -1,28 +1,20 @@
 import React from 'react';
 
 interface IconButtonProps {
-  hasBadge?: boolean;
-  size?: 'sm' | 'med' | 'lg';
+  variant: 'primary' | 'secondary' | 'tertiary';
 }
 
 const IconButton: React.FC<
   IconButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
 > = props => {
-  const {
-    children,
-    className,
-    hasBadge = false,
-    size = 'med',
-    ...buttonElProps
-  } = props;
+  const { children, className, variant, ...buttonElProps } = props;
 
   return (
     <button
       {...buttonElProps}
-      className={`icon-button icon-button--${size} ${className}`}
+      className={`icon-button icon-button--${variant} ${className}`}
     >
       {children}
-      {hasBadge && <div className="icon-button__badge" />}
     </button>
   );
 };

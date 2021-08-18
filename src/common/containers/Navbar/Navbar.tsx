@@ -64,6 +64,7 @@ const Navbar = () => {
         <IconButton
           onClick={() => setMobileNavbarIsShown(prev => !prev)}
           className={classes['mobile-nav-button']}
+          variant="primary"
         >
           <MenuIcon isActive={mobileNavbarIsShown} />
         </IconButton>
@@ -73,12 +74,8 @@ const Navbar = () => {
             <NavLink key={index} {...navLinkData} />
           ))}
         </div>
-        <div className={classes['cart-btn-container']} ref={cartContainerRef}>
-          <IconButton
-            onClick={() => setIsBagShown(true)}
-            hasBadge={!bagIsEmpty}
-            size="lg"
-          >
+        <div className={classes['bag-btn-container']} ref={cartContainerRef}>
+          <IconButton onClick={() => setIsBagShown(true)} variant="primary">
             <CartIcon />
           </IconButton>
 

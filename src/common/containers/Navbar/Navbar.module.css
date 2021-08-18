@@ -76,7 +76,7 @@
   }
 
   .mobile-nav-button {
-    display: block;
+    display: flex;
   }
 }
 
@@ -111,7 +111,7 @@
   }
 }
 
-.cart-btn-container {
+.bag-btn-container {
   position: relative;
 }
 
@@ -122,14 +122,13 @@
 
   width: 1.85rem;
   height: 1.45rem;
-  margin: 0.4rem 0.2rem;
 }
 
 .menu-icon__bar,
 .menu-icon::before,
 .menu-icon::after {
   height: 3px;
-  background-color: var(--color-grey-darker);
+  background-color: var(--color-grey-lighter);
 }
 
 .menu-icon__bar {

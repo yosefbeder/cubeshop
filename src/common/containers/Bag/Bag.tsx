@@ -27,7 +27,7 @@ const Bag: React.FC<BagProps> = ({ items, onClose, className }) => {
     >
       <div className={classes.header}>
         <h3 className="header-3">Your shopping bag</h3>
-        <IconButton onClick={onClose}>
+        <IconButton onClick={onClose} variant="tertiary">
           <IoClose />
         </IconButton>
       </div>
