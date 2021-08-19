@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './Form.module.css';
-import Input from './Input';
+import Input from '../../../../common/components/Input';
 import Select, { OptionTypeBase } from 'react-select';
 import { useForm } from 'react-hook-form';
 import Button from '../../../../common/components/Button';
@@ -26,11 +26,9 @@ interface FormState {
 
 const getStripeInputOptions = (fullWidth: boolean = false) => ({
   classes: {
-    invalid: classes['stripe-input--invalid'],
-    focus: classes['stripe-input--focus'],
-    base: `${classes['stripe-input']} ${
-      fullWidth && classes['stripe-input--full-width']
-    }`,
+    invalid: 'stripe-input--invalid',
+    focus: 'stripe-input--focus',
+    base: `stripe-input ${fullWidth && classes['grid-item--full-width']}`,
   },
 });
 
@@ -75,7 +73,7 @@ const Form = () => {
           {...register('email')}
           hasError={Boolean(errors.email)}
           placeholder="Email"
-          fullWidth
+          className={classes['grid-item--full-width']}
         />
         <p className={`p-2 ${classes['form-group__text']}`}>
           We'll only use your email to send your order confirmation
@@ -126,7 +124,7 @@ const Form = () => {
           {...register('phoneNumber')}
           hasError={Boolean(errors.email)}
           placeholder="Phone number"
-          fullWidth
+          className={classes['grid-item--full-width']}
         />
 
         <p className={`p-2 ${classes['form-group__text']}`}>
@@ -153,7 +151,7 @@ const Form = () => {
         </p>
       </div>
 
-      <Button icon={IoCarOutline} type="submit" isLoading={!isRendered}>
+      <Button type="submit" isLoading={!isRendered}>
         Place order
       </Button>
     </form>

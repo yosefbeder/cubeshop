@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface IconButtonProps {
-  variant: 'primary' | 'secondary' | 'tertiary';
+  variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary';
 }
 
 const IconButton: React.FC<

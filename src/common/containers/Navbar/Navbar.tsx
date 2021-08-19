@@ -11,7 +11,7 @@ import Logo from '../../components/Logo';
 
 const navLinksData = [
   { content: 'home', to: '/' },
-  { content: 'shop', to: '/shop' },
+  { content: 'shop', to: '/products' },
   { content: 'our story', to: '/about' },
   { content: 'contact us', to: '/contact' },
 ];

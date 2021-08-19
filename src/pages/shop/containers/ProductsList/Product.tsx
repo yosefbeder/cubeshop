@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Product.module.css';
 import Button from '../../../../common/components/Button';
-import { IoBagAdd as CartIcon } from 'react-icons/io5';
-import { useState } from 'react';
 import { formatPrice } from '../../../../utils/numbers';
 
 interface ProductProps {
@@ -23,7 +21,6 @@ const Product: React.FC<ProductProps> = ({ imgSrc, name, price }) => {
         <p className="txt-primary">{name}</p>
         <p className="txt-emphasize">{formatPrice('$', price)}</p>
         <Button
-          icon={CartIcon}
           isLoading={isLoading}
           variant="contained"
           onClick={() => {

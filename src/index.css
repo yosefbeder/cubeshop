@@ -77,7 +77,6 @@ input {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--color-grey-lighter);
 }
 
 @media (max-width: 62em) {
@@ -100,7 +99,7 @@ input {
 }
 
 .header-2 {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-grey-darker);
 }
@@ -113,7 +112,7 @@ input {
 
 .p-1 {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--color-grey-dark);
   line-height: 1.5;
 }
@@ -214,7 +213,7 @@ button {
   width: 1.8rem;
   height: 1.8rem;
 
-  color: var(--color-grey-darker);
+  color: var(--color-grey-dark);
   font-size: 1.6rem;
 
   border-radius: 0.25rem;
@@ -229,6 +228,20 @@ button {
   box-shadow: 0 0 0 2px var(--color-primary-transparent-5);
 }
 
+.icon-button--quaternary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 2.4rem;
+  height: 2.4rem;
+
+  color: var(--color-grey-dark);
+  font-size: 2.2rem;
+
+  border-radius: 0.25rem;
+}
+
 /* BUTTON */
 
 .button {
@@ -240,6 +253,7 @@ button {
   transition: all 300ms;
   font-size: 1.2rem;
   font-weight: 400;
+  white-space: nowrap;
 }
 
 .button--contained {
@@ -251,7 +265,7 @@ button {
   background-color: var(--color-primary-lighter);
 }
 
-.button--contained.button--disabled {
+.button--contained:disabled {
   background-color: var(--color-grey-light);
   cursor: not-allowed;
 }
@@ -267,25 +281,6 @@ button {
 
 .button--outlined:active {
   background-color: var(--color-primary-transparent-2);
-}
-
-.button__text,
-.button__icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transition: all 300ms;
-}
-
-.button__text {
-  white-space: nowrap;
-  transform: translate(-50%, -50%);
-}
-
-.button__icon {
-  width: 1.8rem;
-  height: 1.8rem;
-  transform: translate(-50%, -5rem);
 }
 
 .button__loading-spinner {
@@ -355,4 +350,34 @@ button {
 
 .fade-enter-active {
   opacity: 1;
+}
+
+/* INPUTS */
+
+.input,
+.stripe-input {
+  padding: var(--space-med);
+  background-color: var(--color-white);
+  color: var(--color-grey-darker);
+  border-radius: 0.25rem;
+  border: 1px solid var(--color-grey-light);
+
+  transition: all 300ms;
+}
+
+.input:hover,
+.stripe-input:hover {
+  border: 1px solid var(--color-grey);
+}
+
+.input:focus,
+.stripe-input--focus {
+  border: 1px solid var(--color-primary) !important;
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.input--invalid,
+.stripe-input--invalid {
+  border: 1px solid tomato;
+  box-shadow: 0 0 0 1px tomato;
 }

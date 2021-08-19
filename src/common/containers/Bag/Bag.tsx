@@ -3,10 +3,6 @@ import { IoClose } from 'react-icons/io5';
 import IconButton from '../../components/IconButton';
 import classes from './Bag.module.css';
 import Button from '../../components/Button';
-import {
-  IoEnterOutline as CheckoutIcon,
-  IoPlayOutline as PlayIcon,
-} from 'react-icons/io5';
 import CartItem, { BagItemProps } from './BagItem';
 import { useHistory } from 'react-router-dom';
 
@@ -42,7 +38,6 @@ const Bag: React.FC<BagProps> = ({ items, onClose, className }) => {
         {items.length > 0 ? (
           <>
             <Button
-              icon={PlayIcon}
               className={classes['continue-shopping-btn']}
               variant="outlined"
               onClick={onClose}
@@ -51,7 +46,6 @@ const Bag: React.FC<BagProps> = ({ items, onClose, className }) => {
             </Button>
 
             <Button
-              icon={CheckoutIcon}
               className={classes['checkout-btn']}
               onClick={() => history.push('/checkout')}
             >
@@ -60,7 +54,6 @@ const Bag: React.FC<BagProps> = ({ items, onClose, className }) => {
           </>
         ) : (
           <Button
-            icon={PlayIcon}
             className={classes['continue-shopping-btn']}
             onClick={onClose}
           >
