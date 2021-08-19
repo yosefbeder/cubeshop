@@ -61,3 +61,48 @@
 .actions--2 button {
   flex: 1;
 }
+
+@media (max-width: 62em) {
+  .main {
+    justify-content: center;
+    grid-template-columns: calc(60rem * 1 / 9) calc(60rem * 4 / 9);
+    grid-template-rows: calc(60rem * 4 / 9) repeat(3, max-content);
+
+    grid-row-gap: var(--space-xl);
+  }
+
+  .details,
+  .actions--2 {
+    grid-column: 1 / -1;
+  }
+
+  .actions--1 {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+}
+
+@media (max-width: 37.5em) {
+  .main {
+    grid-template-columns: calc(60rem * 4 / 9);
+    grid-template-rows: calc(60rem * 4 / 9) calc(60rem * 1 / 9) repeat(
+        3,
+        max-content
+      );
+  }
+
+  .imgs-container {
+    grid-row: 2 / 3;
+    flex-direction: row;
+  }
+
+  .details,
+  .actions--2 {
+    grid-column: 1 / -1;
+  }
+
+  .actions--1 {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+  }
+}
