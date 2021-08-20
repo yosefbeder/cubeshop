@@ -11,6 +11,7 @@ const App = () => {
   const dispatch = useAppDispatch();
   const productsIsLoaded = useAppSelector(state => state.products.status);
   const products = useAppSelector(state => state.products.data);
+  const bag = useAppSelector(state => state.bag.data);
   const bagIsLoaded = useAppSelector(state => state.products.status);
 
   const isLoaded = bagIsLoaded === 'loaded' && productsIsLoaded === 'loaded';

@@ -6,8 +6,8 @@ import { IoBag as CartIcon } from 'react-icons/io5';
 import MenuIcon from './MenIcon';
 import Bag from '../Bag/Bag';
 import { CSSTransition } from 'react-transition-group';
-import dummyBag from '../../../data/dummy-bag';
 import Logo from '../../components/Logo';
+import { BagItemType } from '../../../types';
 
 const navLinksData = [
   { content: 'home', to: '/' },
@@ -26,14 +26,16 @@ const MobileNavbar = () => {
   );
 };
 
-const Navbar = () => {
+interface NavbarProps {
+  bagItems: BagItemType[];
+  subtotal: number;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ bagItems, subtotal }) => {
   const [mobileNavbarIsShown, setMobileNavbarIsShown] = useState(false);
   const [isBagShown, setIsBagShown] = useState(false);
-  const [bagItems, setBagItems] = useState(dummyBag);
 
   const closeBag = () => setIsBagShown(false);
-
-  const bagIsEmpty = bagItems.length === 0;
 
   const cartContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -86,7 +88,7 @@ const Navbar = () => {
             unmountOnExit
             mountOnEnter
           >
-            <Bag items={bagItems} onClose={closeBag} />
+            <Bag items={bagItems} subtotal={subtotal} onClose={closeBag} />
           </CSSTransition>
         </div>
       </div>

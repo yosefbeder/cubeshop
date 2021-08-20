@@ -125,14 +125,14 @@ input {
 
 .txt-primary {
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
 
   color: var(--color-grey-dark);
 }
 
 .txt-emphasize {
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-size: 1.1rem;
+  font-weight: 600;
 
   color: var(--color-grey-darker);
 }

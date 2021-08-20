@@ -14,10 +14,31 @@ export interface BagItemProps {
   name: string;
   price: number;
   quantity: number;
+  available: number;
+  onRemove: () => Promise<void>;
+  onQuantityChange: (change: number) => Promise<void>;
 }
 
-const BagItem: React.FC<BagItemProps> = ({ imgSrc, name, price, quantity }) => {
+const BagItem: React.FC<BagItemProps> = ({
+  imgSrc,
+  name,
+  price,
+  quantity,
+  available,
+  onRemove,
+  onQuantityChange,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const quantityChangeHandler = async (change: number) => {
+    try {
+      setIsLoading(true);
+      await onQuantityChange(change);
+    } catch (err) {
+      alert(new Error('Something went wrong'));
+    }
+    setIsLoading(false);
+  };
 
   return (
     <div className={classes.container}>
@@ -34,15 +55,34 @@ const BagItem: React.FC<BagItemProps> = ({ imgSrc, name, price, quantity }) => {
       </div>
       <div className={classes.actions}>
         <div className={classes['quantity-controller']}>
-          <IconButton variant="secondary">
+          <IconButton
+            variant="secondary"
+            disabled={quantity === available}
+            onClick={() => quantityChangeHandler(1)}
+          >
             <PlusIcon />
           </IconButton>
           <span>{quantity}</span>
-          <IconButton variant="secondary" disabled>
+          <IconButton
+            variant="secondary"
+            disabled={quantity === 1}
+            onClick={() => quantityChangeHandler(-1)}
+          >
             <SubIcon />
           </IconButton>
         </div>
-        <IconButton variant="tertiary">
+        <IconButton
+          variant="tertiary"
+          onClick={async () => {
+            try {
+              setIsLoading(true);
+              await onRemove();
+            } catch (err) {
+              alert(new Error('Something went wrong'));
+            }
+            setIsLoading(false);
+          }}
+        >
           <TrashIcon />
         </IconButton>
       </div>

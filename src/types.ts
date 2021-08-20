@@ -9,6 +9,7 @@ export interface ProductType {
 }
 
 export interface BagItemType extends ProductType {
+  productId: string;
   quantity: number;
 }
 

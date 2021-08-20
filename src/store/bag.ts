@@ -19,11 +19,11 @@ const slice = createSlice({
   name: 'bag',
   initialState,
   reducers: {
-    addToBag(state, action: PayloadAction<BagItemType>) {
+    add(state, action: PayloadAction<BagItemType>) {
       state.data!.items.push(action.payload);
       state.data!.subtotal += action.payload.price;
     },
-    removeFromBag(state, action: PayloadAction<string>) {
+    remove(state, action: PayloadAction<string>) {
       const i = state.data!.items.findIndex(item => item.id === action.payload);
 
       state.data!.items.splice(i, 1);
@@ -45,8 +45,8 @@ const slice = createSlice({
       state.status = 'loading';
     });
     builder.addCase(fetchBag.fulfilled, (state, action) => {
-      state.status = 'loaded';
       state.data = action.payload;
+      state.status = 'loaded';
     });
     builder.addCase(fetchBag.rejected, state => {
       state.status = 'failed';
