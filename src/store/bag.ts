@@ -21,6 +21,7 @@ const slice = createSlice({
   reducers: {
     addToBag(state, action: PayloadAction<BagItemType>) {
       state.data!.items.push(action.payload);
+      state.data!.subtotal += action.payload.price;
     },
     removeFromBag(state, action: PayloadAction<string>) {
       const i = state.data!.items.findIndex(item => item.id === action.payload);
@@ -29,13 +30,14 @@ const slice = createSlice({
     },
     changeQuantity(
       state,
-      action: PayloadAction<{ id: string; change: number }>,
+      {
+        payload: { id, change },
+      }: PayloadAction<{ id: string; change: number }>,
     ) {
-      const i = state.data!.items.findIndex(
-        item => item.id === action.payload.id,
-      );
+      const item = state.data!.items.find(item => item.id === id);
 
-      state.data!.items[i].quantity += action.payload.change;
+      item!.quantity += change;
+      state.data!.subtotal += change * item!.price;
     },
   },
   extraReducers: builder => {
