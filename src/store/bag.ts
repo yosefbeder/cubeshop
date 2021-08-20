@@ -1,22 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductType } from './products';
-
-export interface BagItemType extends ProductType {
-  quantity: number;
-}
-
-interface DataType {
-  id: string;
-  subtotal: number;
-  items: BagItemType[];
-}
+import { getBag } from '../api/commerce';
+import { BagItemType, BagType, ProductType } from '../types';
 
 const initialState: {
   http: {
     isLoading: boolean;
     hasError: boolean;
   };
-  data: null | DataType;
+  data: null | BagType;
 } = {
   http: {
     isLoading: true,
@@ -25,7 +16,10 @@ const initialState: {
   data: null,
 };
 
-const fetchBag = createAsyncThunk('fetchBag', async (): DataType => {});
+const fetchBag = createAsyncThunk(
+  'fetchBag',
+  async (products: ProductType[]) => await getBag(products),
+);
 
 const slice = createSlice({
   name: 'bag',
