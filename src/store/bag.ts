@@ -1,22 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getBag } from '../api/commerce';
-import { BagItemType, BagType, ProductType } from '../types';
+import { BagItemType, BagType, ProductType, StatusType } from '../types';
 
 const initialState: {
-  http: {
-    isLoading: boolean;
-    hasError: boolean;
-  };
+  status: StatusType;
   data: null | BagType;
 } = {
-  http: {
-    isLoading: true,
-    hasError: false,
-  },
+  status: 'loading',
   data: null,
 };
 
-const fetchBag = createAsyncThunk(
+export const fetchBag = createAsyncThunk(
   'fetchBag',
   async (products: ProductType[]) => await getBag(products),
 );
@@ -46,16 +40,15 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchBag.pending, state => {
-      state.http.isLoading = true;
-      state.http.hasError = false;
+      state.status = 'loading';
     });
     builder.addCase(fetchBag.fulfilled, (state, action) => {
-      state.http.isLoading = false;
+      state.status = 'loaded';
       state.data = action.payload;
     });
     builder.addCase(fetchBag.rejected, state => {
-      state.http.isLoading = false;
-      state.http.hasError = true;
+      state.status = 'failed';
+      state.data = null;
     });
   },
 });

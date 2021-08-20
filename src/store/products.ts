@@ -1,22 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllProducts } from '../api/commerce';
-import { ProductType } from '../types';
+import { ProductType, StatusType } from '../types';
 
 const initialState: {
-  http: {
-    isLoading: boolean;
-    hasError: boolean;
-  };
+  status: StatusType;
   data: null | ProductType[];
 } = {
-  http: {
-    isLoading: true,
-    hasError: false,
-  },
+  status: 'loading',
   data: null,
 };
 
-const fetchProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk(
   'fetchProducts',
   async () => await getAllProducts(),
 );
@@ -27,16 +21,15 @@ const slice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchProducts.pending, state => {
-      state.http.isLoading = true;
-      state.http.hasError = false;
+      state.status = 'loading';
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      state.http.isLoading = false;
+      state.status = 'loaded';
       state.data = action.payload;
     });
     builder.addCase(fetchProducts.rejected, state => {
-      state.http.isLoading = false;
-      state.http.hasError = true;
+      state.status = 'failed';
+      state.data = null;
     });
   },
 });

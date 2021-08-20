@@ -1,3 +1,5 @@
+export type StatusType = 'loading' | 'loaded' | 'failed';
+
 export interface ProductType {
   id: string;
   imgSrc: string;

@@ -31,7 +31,7 @@ const Bag: React.FC<BagProps> = ({ items, onClose, className }) => {
         {items.length === 0 ? (
           <p className="p-1">There's nothing in your bag yet.</p>
         ) : (
-          items.map(item => <CartItem {...item} />)
+          items.map((item, index) => <CartItem key={index} {...item} />)
         )}
       </div>
       <div className={classes.actions}>

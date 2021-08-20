@@ -1,12 +1,11 @@
 import React from 'react';
-import { Navbar, Footer } from '../../common/containers';
+import Layout from '../../common/containers/Layout';
 import { ProductsList } from './containers';
 import classes from './shop.module.css';
 
-const index = () => {
+const Shop = () => {
   return (
-    <>
-      <Navbar />
+    <Layout>
       <main className={classes.main}>
         <h1 className={`header-1 ${classes.header}`}>Shop all products</h1>
         <p className={`p-1 ${classes.p}`}>
@@ -19,9 +18,8 @@ const index = () => {
         </p>
         <ProductsList />
       </main>
-      <Footer />
-    </>
+    </Layout>
   );
 };
 
-export default index;
+export default Shop;

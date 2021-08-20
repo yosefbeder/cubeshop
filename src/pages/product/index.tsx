@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import classes from './product.module.css';
-import { Footer, Navbar } from '../../common/containers';
-import Info from './containers/Info';
 import IconButton from '../../common/components/IconButton';
 import { IoHeart, IoHeartOutline, IoLinkOutline } from 'react-icons/io5';
 import Button from '../../common/components/Button';
 import Input from '../../common/components/Input';
 import { formatPrice } from '../../utils/numbers';
+import Layout from '../../common/containers/Layout';
 
 const product = {
   imgSrcs: [
@@ -30,8 +29,7 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <>
-      <Navbar />
+    <Layout>
       <main className={classes.main}>
         <div className={classes['imgs-container']}>
           {product.imgSrcs.map((imgSrc, index) => (
@@ -90,8 +88,7 @@ const Product = () => {
           <Button>Add To Cart</Button>
         </div>
       </main>
-      <Footer />
-    </>
+    </Layout>
   );
 };
 
