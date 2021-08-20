@@ -13,11 +13,21 @@ export const getAllProducts = async (): Promise<ProductType[]> => {
   return data.map(
     ({
       id,
-      media: { source: imgSrc },
+      assets,
       name,
+      description,
       price: { raw: price },
       inventory: { available },
-    }) => ({ id, imgSrc, name, price, available }),
+    }) => ({
+      id,
+      imgSrcs: assets.map(asset => asset.url),
+      name,
+      description: description
+        .replace(/<p>/g, '<p class="p-1">')
+        .replace(/<\/?ul>/g, ''),
+      price,
+      available,
+    }),
   );
 };
 
@@ -25,12 +35,19 @@ export const getAllProducts = async (): Promise<ProductType[]> => {
 export const getBag = async (products: ProductType[]): Promise<BagType> => {
   const request = await commerce.cart.retrieve();
 
-  const bagItems: BagItemType[] = request.line_items.map((item, index) => ({
-    ...products[index],
-    id: item.id,
-    productId: item.product_id,
-    quantity: item.quantity,
-  }));
+  const bagItems: BagItemType[] = request.line_items.map((item, index) => {
+    const { id: productId, name, price, available, imgSrcs } = products[index];
+
+    return {
+      id: item.id,
+      productId,
+      name,
+      price,
+      available,
+      quantity: item.quantity,
+      imgSrc: imgSrcs[0],
+    };
+  });
 
   return { id: request.id, subtotal: request.subtotal.raw, items: bagItems };
 };

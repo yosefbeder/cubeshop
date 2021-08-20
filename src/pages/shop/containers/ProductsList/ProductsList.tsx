@@ -14,9 +14,10 @@ const ProductsList = () => {
 
   return (
     <div className={classes['products-container']}>
-      {products!.map(({ id, ...productProps }) => (
+      {products!.map(({ id, imgSrcs, description, ...productProps }) => (
         <Product
           key={id}
+          imgSrc={imgSrcs[0]}
           {...productProps}
           onClick={() => history.push(`products/${id}`)}
           onAddToBag={async () => {
@@ -47,6 +48,7 @@ const ProductsList = () => {
                   id: itemId!,
                   productId: id,
                   quantity: 1,
+                  imgSrc: imgSrcs[0],
                   ...productProps,
                 }),
               );

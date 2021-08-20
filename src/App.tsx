@@ -9,12 +9,13 @@ import { fetchBag } from './store/bag';
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const productsIsLoaded = useAppSelector(state => state.products.status);
+  const productsIsLoaded =
+    useAppSelector(state => state.products.status) === 'loaded';
   const products = useAppSelector(state => state.products.data);
-  const bag = useAppSelector(state => state.bag.data);
-  const bagIsLoaded = useAppSelector(state => state.products.status);
+  const bagIsLoaded =
+    useAppSelector(state => state.products.status) === 'loaded';
 
-  const isLoaded = bagIsLoaded === 'loaded' && productsIsLoaded === 'loaded';
+  const isLoaded = bagIsLoaded && productsIsLoaded;
 
   useEffect(() => {
     (async () => {
@@ -23,7 +24,7 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (productsIsLoaded === 'loaded') {
+    if (productsIsLoaded) {
       (async () => {
         await dispatch(fetchBag(products!));
       })();
