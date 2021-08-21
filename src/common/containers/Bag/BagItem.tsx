@@ -8,6 +8,7 @@ import { formatPriceEGP } from '../../../utils/numbers';
 import classes from './BagItem.module.css';
 import IconButton from '../../components/IconButton';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import { useEffect } from 'react';
 
 export interface BagItemProps {
   imgSrc: string;
@@ -30,11 +31,14 @@ const BagItem: React.FC<BagItemProps> = ({
   onRemove,
   onQuantityChange,
 }) => {
-  // ! state update in an unmounted component issue
-
-  // ! can update the quantity while it's downloading
-
   const [isLoading, setIsLoading] = useState(false);
+  const [isUnmounted, setIsUnmounted] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setIsUnmounted(true);
+    };
+  }, []);
 
   const quantityChangeHandler = async (change: number) => {
     try {
@@ -43,7 +47,7 @@ const BagItem: React.FC<BagItemProps> = ({
     } catch (err) {
       alert(new Error('Something went wrong'));
     }
-    setIsLoading(false);
+    if (!isUnmounted) setIsLoading(false);
   };
 
   return (
@@ -63,7 +67,7 @@ const BagItem: React.FC<BagItemProps> = ({
         <div className={classes['quantity-controller']}>
           <IconButton
             variant="secondary"
-            disabled={quantity === available || isSelected}
+            disabled={quantity === available || isSelected || isLoading}
             onClick={() => quantityChangeHandler(1)}
           >
             <PlusIcon />
@@ -71,7 +75,7 @@ const BagItem: React.FC<BagItemProps> = ({
           <span>{quantity}</span>
           <IconButton
             variant="secondary"
-            disabled={quantity === 1 || isSelected}
+            disabled={quantity === 1 || isSelected || isLoading}
             onClick={() => quantityChangeHandler(-1)}
           >
             <SubIcon />
@@ -86,7 +90,7 @@ const BagItem: React.FC<BagItemProps> = ({
             } catch (err) {
               alert(new Error('Something went wrong'));
             }
-            setIsLoading(false);
+            if (!isUnmounted) setIsLoading(false);
           }}
         >
           <TrashIcon />
