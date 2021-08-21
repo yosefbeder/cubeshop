@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatPrice } from '../../../../utils/numbers';
+import { formatPriceEGP } from '../../../../utils/numbers';
 import classes from './Summary.module.css';
 
 interface SummaryItemProps {
@@ -22,7 +22,7 @@ const SummaryItem: React.FC<SummaryItemProps> = ({
         {name} x {quantity}
       </p>
       <div className={`${classes['summary-item__price']} txt-emphasize`}>
-        {formatPrice('$', price)}
+        {formatPriceEGP(price)}
       </div>
     </div>
   );

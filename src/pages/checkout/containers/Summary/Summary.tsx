@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Summary.module.css';
 import SummaryItem from './SummaryItem';
 import dummyBag from '../../../../data/dummy-bag';
-import { formatPrice } from '../../../../utils/numbers';
+import { formatPriceEGP } from '../../../../utils/numbers';
 
 const Summary = () => {
   const subtotal = dummyBag.reduce((acc, cur) => acc + cur.price, 0);
@@ -23,19 +23,19 @@ const Summary = () => {
           className={`${classes['price-summary__group']} ${classes['price-summary__group--sm']} txt-primary`}
         >
           <span>Subtotal</span>
-          <span>{formatPrice('$', subtotal)}</span>
+          <span>{formatPriceEGP(subtotal)}</span>
         </div>
         <div
           className={`${classes['price-summary__group']} ${classes['price-summary__group--sm']} txt-primary`}
         >
           <span>Delivery</span>
-          <span>{formatPrice('$', delivery)}</span>
+          <span>{formatPriceEGP(delivery)}</span>
         </div>
         <div
           className={`${classes['price-summary__group']} ${classes['price-summary__group--lg']} txt-emphasize`}
         >
           <span>Total</span>
-          <span>{formatPrice('$', subtotal + delivery)}</span>
+          <span>{formatPriceEGP(subtotal + delivery)}</span>
         </div>
       </div>
     </div>

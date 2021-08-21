@@ -4,7 +4,7 @@ import IconButton from '../../common/components/IconButton';
 import { IoHeart, IoHeartOutline, IoLinkOutline } from 'react-icons/io5';
 import Button from '../../common/components/Button';
 import Input from '../../common/components/Input';
-import { formatPrice } from '../../utils/numbers';
+import { formatPriceEGP } from '../../utils/numbers';
 import Layout from '../../common/containers/Layout';
 import { useHistory, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
@@ -98,7 +98,7 @@ const Product = () => {
         />
         <div className={classes.details}>
           <h1 className="header-1">{name}</h1>
-          <h2 className="header-2">{formatPrice('$', price)}</h2>
+          <h2 className="header-2">{formatPriceEGP(price)}</h2>
           <ul
             className={classes['description-list']}
             dangerouslySetInnerHTML={{ __html: description }}

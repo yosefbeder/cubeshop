@@ -9,7 +9,7 @@ import { BagItemType } from '../../../types';
 import { commerce } from '../../../api/commerce';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { actions as bagActions } from '../../../store/bag';
-import { formatPrice } from '../../../utils/numbers';
+import { formatPriceEGP } from '../../../utils/numbers';
 
 interface BagProps {
   items: BagItemType[];
@@ -68,7 +68,7 @@ const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
       {items.length > 0 && (
         <div className={`txt-emphasize ${classes.subtotal}`}>
           <span>Total price</span>
-          <span>{formatPrice('$', subtotal)}</span>
+          <span>{formatPriceEGP(subtotal)}</span>
         </div>
       )}
       <div className={classes.actions}>

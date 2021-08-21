@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classes from './Product.module.css';
 import Button from '../../../../common/components/Button';
-import { formatPrice } from '../../../../utils/numbers';
+import { formatPriceEGP } from '../../../../utils/numbers';
 
 interface ProductProps {
   imgSrc: string;
@@ -29,7 +29,7 @@ const Product: React.FC<ProductProps> = ({
         <p className={`txt-primary ${classes.name}`} onClick={onClick}>
           {name}
         </p>
-        <p className="txt-emphasize">{formatPrice('$', price)}</p>
+        <p className="txt-emphasize">{formatPriceEGP(price)}</p>
         <Button
           isLoading={isLoading}
           variant="contained"

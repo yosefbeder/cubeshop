@@ -4,7 +4,7 @@ import {
   IoRemove as SubIcon,
   IoTrashOutline as TrashIcon,
 } from 'react-icons/io5';
-import { formatPrice } from '../../../utils/numbers';
+import { formatPriceEGP } from '../../../utils/numbers';
 import classes from './BagItem.module.css';
 import IconButton from '../../components/IconButton';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -57,7 +57,7 @@ const BagItem: React.FC<BagItemProps> = ({
       </div>
       <div className={classes.info}>
         <span className="txt-primary">{name}</span>
-        <span className="txt-emphasize">{formatPrice('$', price)}</span>
+        <span className="txt-emphasize">{formatPriceEGP(price)}</span>
       </div>
       <div className={classes.actions}>
         <div className={classes['quantity-controller']}>
