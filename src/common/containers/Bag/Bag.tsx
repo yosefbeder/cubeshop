@@ -7,7 +7,7 @@ import BagItem from './BagItem';
 import { useHistory } from 'react-router-dom';
 import { BagItemType } from '../../../types';
 import { commerce } from '../../../api/commerce';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { actions as bagActions } from '../../../store/bag';
 import { formatPrice } from '../../../utils/numbers';
 
@@ -21,6 +21,14 @@ interface BagProps {
 const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
+  const selectedProduct = useAppSelector(
+    state => state.products.selectedProduct,
+  );
+
+  const onContinueShopping = () => {
+    onClose();
+    history.push('/products');
+  };
 
   return (
     <div
@@ -30,7 +38,7 @@ const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
     >
       <div className={classes.header}>
         <h3 className="header-3">Your shopping bag</h3>
-        <IconButton onClick={onClose} variant="tertiary">
+        <IconButton onClick={onContinueShopping} variant="tertiary">
           <IoClose />
         </IconButton>
       </div>
@@ -38,9 +46,10 @@ const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
         {items.length === 0 ? (
           <p className="p-1">There's nothing in your bag yet.</p>
         ) : (
-          items.map(({ id, ...itemProps }) => (
+          items.map(({ id, productId, ...itemProps }) => (
             <BagItem
               key={id}
+              isSelected={selectedProduct === productId}
               {...itemProps}
               onRemove={async () => {
                 await commerce.cart.remove(id);
@@ -68,7 +77,7 @@ const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
             <Button
               className={classes['continue-shopping-btn']}
               variant="outlined"
-              onClick={onClose}
+              onClick={onContinueShopping}
             >
               Continue shopping
             </Button>
@@ -83,7 +92,7 @@ const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
         ) : (
           <Button
             className={classes['continue-shopping-btn']}
-            onClick={onClose}
+            onClick={onContinueShopping}
           >
             Continue shopping
           </Button>

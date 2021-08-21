@@ -15,6 +15,7 @@ export interface BagItemProps {
   price: number;
   quantity: number;
   available: number;
+  isSelected: boolean;
   onRemove: () => Promise<void>;
   onQuantityChange: (change: number) => Promise<void>;
 }
@@ -25,9 +26,14 @@ const BagItem: React.FC<BagItemProps> = ({
   price,
   quantity,
   available,
+  isSelected,
   onRemove,
   onQuantityChange,
 }) => {
+  // ! state update in an unmounted component issue
+
+  // ! can update the quantity while it's downloading
+
   const [isLoading, setIsLoading] = useState(false);
 
   const quantityChangeHandler = async (change: number) => {
@@ -57,7 +63,7 @@ const BagItem: React.FC<BagItemProps> = ({
         <div className={classes['quantity-controller']}>
           <IconButton
             variant="secondary"
-            disabled={quantity === available}
+            disabled={quantity === available || isSelected}
             onClick={() => quantityChangeHandler(1)}
           >
             <PlusIcon />
@@ -65,7 +71,7 @@ const BagItem: React.FC<BagItemProps> = ({
           <span>{quantity}</span>
           <IconButton
             variant="secondary"
-            disabled={quantity === 1}
+            disabled={quantity === 1 || isSelected}
             onClick={() => quantityChangeHandler(-1)}
           >
             <SubIcon />

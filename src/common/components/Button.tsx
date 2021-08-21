@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>> =
       <button
         {...buttonElProps}
         className={`button button--${variant} ${className}`}
-        disabled={isLoading}
+        disabled={isLoading || disabled}
       >
         {isLoading ? (
           <LoadingSpinner className="button__loading-spinner" />

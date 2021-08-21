@@ -16,12 +16,16 @@
 .imgs-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: var(--space-sm);
 }
 
 .img {
   object-fit: cover;
   border-radius: 50%;
+
+  width: calc(100% - var(--space-sm));
+  height: calc((100% - var(--space-sm) * 3) / 4);
   cursor: pointer;
   border: 2px solid transparent;
 
@@ -34,6 +38,7 @@
 
 .selected-img {
   height: 100%;
+  width: 100%;
   object-fit: cover;
   border-radius: 0.5rem;
 }
@@ -51,11 +56,12 @@
 
 .actions {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--space-med);
 }
 
 .actions--1 {
   grid-column: 2 / 3;
+  align-items: center;
 }
 
 .actions--2 button {

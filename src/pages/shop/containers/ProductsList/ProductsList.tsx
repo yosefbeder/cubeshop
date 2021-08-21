@@ -7,14 +7,14 @@ import { commerce } from '../../../../api/commerce';
 import { actions as bagActions } from '../../../../store/bag';
 
 const ProductsList = () => {
-  const products = useAppSelector(state => state.products.data);
-  const bag = useAppSelector(state => state.bag.data);
+  const products = useAppSelector(state => state.products.data)!;
+  const bag = useAppSelector(state => state.bag.data)!;
   const history = useHistory();
   const dispatch = useAppDispatch();
 
   return (
     <div className={classes['products-container']}>
-      {products!.map(({ id, imgSrcs, description, ...productProps }) => (
+      {products.map(({ id, imgSrcs, description, ...productProps }) => (
         <Product
           key={id}
           imgSrc={imgSrcs[0]}

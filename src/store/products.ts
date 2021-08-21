@@ -1,12 +1,14 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getAllProducts } from '../api/commerce';
 import { ProductType, StatusType } from '../types';
 
 const initialState: {
   status: StatusType;
+  selectedProduct: string;
   data: null | ProductType[];
 } = {
   status: 'loading',
+  selectedProduct: '',
   data: null,
 };
 
@@ -18,7 +20,11 @@ export const fetchProducts = createAsyncThunk(
 const slice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedProduct(state, action: PayloadAction<string>) {
+      state.selectedProduct = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(fetchProducts.pending, state => {
       state.status = 'loading';
