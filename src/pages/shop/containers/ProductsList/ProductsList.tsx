@@ -14,48 +14,50 @@ const ProductsList = () => {
 
   return (
     <div className={classes['products-container']}>
-      {products.map(({ id, imgSrcs, description, ...productProps }) => (
-        <Product
-          key={id}
-          imgSrc={imgSrcs[0]}
-          {...productProps}
-          onClick={() => history.push(`products/${id}`)}
-          onAddToBag={async () => {
-            // check if the item does exist
-            const product = bag!.items.find(item => item.productId === id);
-            let itemId: string;
+      {products.map(
+        ({ id, imgSrcs, description, available, ...productProps }) => {
+          const bagItem = bag!.items.find(item => item.productId === id);
+          let itemId: string;
 
-            // update the cloud version first
-            if (
-              (product && !(product.quantity === product.available)) ||
-              !product
-            ) {
-              const request = await commerce.cart.add(id, 1);
-              itemId = request.line_item_id;
-            } else {
-              alert(new Error("There's no more in stock!"));
-            }
+          return (
+            <Product
+              key={id}
+              imgSrc={imgSrcs[0]}
+              {...productProps}
+              onClick={() => history.push(`products/${id}`)}
+              disabled={available - (bagItem?.quantity || 0) === 0}
+              onAddToBag={async () => {
+                // check if the item does exist
 
-            if (product && !(product.quantity === product.available)) {
-              // if so just update the quantity (if there's enough in stock)
-              dispatch(bagActions.changeQuantity({ id: itemId!, change: 1 }));
-            }
+                // update the cloud version first
+                const request = await commerce.cart.add(id, 1);
+                itemId = request.line_item_id;
 
-            // else add it
-            if (!product) {
-              dispatch(
-                bagActions.add({
-                  id: itemId!,
-                  productId: id,
-                  quantity: 1,
-                  imgSrc: imgSrcs[0],
-                  ...productProps,
-                }),
-              );
-            }
-          }}
-        />
-      ))}
+                if (bagItem) {
+                  // if so just update the quantity (if there's enough in stock)
+                  dispatch(
+                    bagActions.changeQuantity({ id: itemId!, change: 1 }),
+                  );
+                }
+
+                // else add it
+                if (!bagItem) {
+                  dispatch(
+                    bagActions.add({
+                      id: itemId!,
+                      productId: id,
+                      quantity: 1,
+                      imgSrc: imgSrcs[0],
+                      available,
+                      ...productProps,
+                    }),
+                  );
+                }
+              }}
+            />
+          );
+        },
+      )}
     </div>
   );
 };

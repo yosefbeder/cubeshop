@@ -193,18 +193,6 @@ button {
   box-shadow: 0 0 0 2px var(--color-primary-transparent-5);
 }
 
-.icon-button--secondary:disabled {
-  border: 1px solid var(--color-grey);
-  color: var(--color-grey);
-  cursor: not-allowed;
-}
-
-.icon-button--secondary:disabled:hover,
-.icon-button--secondary:disabled:active {
-  background-color: var(--color-black-transparent-1);
-  box-shadow: none;
-}
-
 .icon-button--tertiary {
   display: flex;
   justify-content: center;
@@ -226,6 +214,24 @@ button {
 .icon-button--tertiary:active {
   background-color: var(--color-primary-transparent-2);
   box-shadow: 0 0 0 2px var(--color-primary-transparent-5);
+}
+
+.icon-button--tertiary:disabled,
+.icon-button--secondary:disabled {
+  cursor: not-allowed;
+}
+
+.icon-button--secondary:disabled {
+  border: 1px solid var(--color-grey);
+  color: var(--color-grey);
+}
+
+.icon-button--secondary:disabled:hover,
+.icon-button--secondary:disabled:active,
+.icon-button--tertiary:disabled:hover,
+.icon-button--tertiary:disabled:active {
+  background-color: var(--color-black-transparent-1);
+  box-shadow: none;
 }
 
 .icon-button--quaternary {
@@ -372,12 +378,16 @@ button {
 
 .input:focus,
 .stripe-input--focus {
-  border: 1px solid var(--color-primary) !important;
+  border: 1px solid var(--color-primary);
   box-shadow: 0 0 0 1px var(--color-primary);
 }
 
 .input--invalid,
-.stripe-input--invalid {
+.input--invalid:focus,
+.input--invalid:hover,
+.stripe-input--invalid,
+.stripe-input--invalid:focus,
+.stripe-input--invalid:hover {
   border: 1px solid tomato;
   box-shadow: 0 0 0 1px tomato;
 }

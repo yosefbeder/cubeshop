@@ -7,6 +7,7 @@ interface ProductProps {
   imgSrc: string;
   name: string;
   price: number;
+  disabled: boolean;
   onClick: () => void;
   onAddToBag: () => Promise<void>;
 }
@@ -15,6 +16,7 @@ const Product: React.FC<ProductProps> = ({
   imgSrc,
   name,
   price,
+  disabled,
   onClick,
   onAddToBag,
 }) => {
@@ -32,6 +34,7 @@ const Product: React.FC<ProductProps> = ({
         <p className="txt-emphasize">{formatPriceEGP(price)}</p>
         <Button
           isLoading={isLoading}
+          disabled={disabled}
           variant="contained"
           onClick={async () => {
             try {

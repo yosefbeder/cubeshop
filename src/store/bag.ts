@@ -4,9 +4,11 @@ import { BagItemType, BagType, ProductType, StatusType } from '../types';
 
 const initialState: {
   status: StatusType;
+  isDisabled: boolean;
   data: null | BagType;
 } = {
   status: 'loading',
+  isDisabled: false,
   data: null,
 };
 
@@ -38,6 +40,19 @@ const slice = createSlice({
 
       item!.quantity += change;
       state.data!.subtotal += change * item!.price;
+    },
+    enableBag(state) {
+      state.isDisabled = false;
+    },
+    disableBag(state) {
+      state.isDisabled = true;
+    },
+    resetBag(state, action: PayloadAction<string>) {
+      state.data = {
+        id: action.payload,
+        items: [],
+        subtotal: 0,
+      };
     },
   },
   extraReducers: builder => {

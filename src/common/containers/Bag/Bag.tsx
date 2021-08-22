@@ -24,6 +24,7 @@ const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
   const selectedProduct = useAppSelector(
     state => state.products.selectedProduct,
   );
+  const isDisabled = useAppSelector(state => state.bag.isDisabled);
 
   const onContinueShopping = () => {
     onClose();
@@ -49,7 +50,7 @@ const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
           items.map(({ id, productId, ...itemProps }) => (
             <BagItem
               key={id}
-              isSelected={selectedProduct === productId}
+              disabled={selectedProduct === productId || isDisabled}
               {...itemProps}
               onRemove={async () => {
                 await commerce.cart.remove(id);

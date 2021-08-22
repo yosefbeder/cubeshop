@@ -29,6 +29,6 @@
   grid-column: 1 / -1;
 }
 
-.gird-item--full-width {
+.grid-item--full-width {
   grid-column-end: span 2;
 }

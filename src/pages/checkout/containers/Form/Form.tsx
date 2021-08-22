@@ -1,28 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './Form.module.css';
 import Input from '../../../../common/components/Input';
-import Select, { OptionTypeBase } from 'react-select';
-import { useForm } from 'react-hook-form';
+import { FormState } from '../..';
+import Select from 'react-select';
 import Button from '../../../../common/components/Button';
-import { IoCarOutline } from 'react-icons/io5';
 import {
   CardNumberElement,
   CardCvcElement,
   CardExpiryElement,
-  useStripe,
-  useElements,
 } from '@stripe/react-stripe-js';
-import subdivisions from '../../../../data/EG-subdivisions';
-
-interface FormState {
-  firstName: string;
-  lastName: string;
-  email: string;
-  address: string;
-  city: string;
-  postalCode: string;
-  phoneNumber: number;
-}
+import { UseFormReturn } from 'react-hook-form';
+import { OptionTypeBase } from 'react-select';
 
 const getStripeInputOptions = (fullWidth: boolean = false) => ({
   classes: {
@@ -32,24 +20,36 @@ const getStripeInputOptions = (fullWidth: boolean = false) => ({
   },
 });
 
-const Form = () => {
-  // form inputs
+interface FormProps {
+  formMethods: UseFormReturn<FormState>;
+  isLoaded: boolean;
+  isCapturingOrder: boolean;
+  onSubmit: (data: FormState) => void;
+  subdivisions: OptionTypeBase[];
+  subdivision: OptionTypeBase | null;
+  onSubdivisionChagne: (selectedValue: OptionTypeBase) => void;
+  shippingOptions: OptionTypeBase[];
+  shippingOption: OptionTypeBase | null;
+  onShippingOptionChange: (selectedValue: OptionTypeBase) => void;
+}
+
+const Form: React.FC<FormProps> = ({
+  formMethods,
+  isLoaded,
+  isCapturingOrder,
+  subdivisions,
+  subdivision,
+  onSubdivisionChagne,
+  shippingOptions,
+  shippingOption,
+  onShippingOptionChange,
+  onSubmit,
+}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormState>();
-  const [subdivision, setSubdivision] = useState<OptionTypeBase | null>(null);
-
-  // stripe & loading stuff
-  const [isRendered, setIsRendered] = useState(false);
-  const stripe = useStripe();
-  const elements = useElements();
-
-  // submitting
-  const onSubmit = (data: FormState) => {
-    console.log({ ...data, subdivision });
-  };
+  } = formMethods;
 
   return (
     <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
@@ -58,19 +58,23 @@ const Form = () => {
           Customer information
         </h2>
         <Input
-          {...register('firstName')}
+          {...register('firstName', { required: true })}
           hasError={Boolean(errors.firstName)}
           placeholder="First name"
         />
 
         <Input
-          {...register('lastName')}
+          {...register('lastName', { required: true })}
           hasError={Boolean(errors.lastName)}
           placeholder="Last name"
         />
 
         <Input
-          {...register('email')}
+          {...register('email', {
+            required: true,
+            pattern:
+              /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+          })}
           hasError={Boolean(errors.email)}
           placeholder="Email"
           className={classes['grid-item--full-width']}
@@ -85,25 +89,22 @@ const Form = () => {
           Delivery information
         </h2>
         <Input
-          {...register('address')}
-          hasError={Boolean(errors.email)}
+          {...register('address', { required: true })}
+          hasError={Boolean(errors.address)}
           placeholder="Address"
         />
 
         <Input
-          {...register('city')}
-          hasError={Boolean(errors.email)}
+          {...register('city', { required: true })}
+          hasError={Boolean(errors.city)}
           placeholder="City"
         />
 
         <Select
           placeholder="Subdivision"
-          options={Object.entries(subdivisions).map(([code, name]) => ({
-            label: name,
-            value: code,
-          }))}
+          options={subdivisions}
           value={subdivision}
-          onChange={selectedValue => setSubdivision(selectedValue)}
+          onChange={onSubdivisionChagne}
           theme={theme => ({
             ...theme,
             colors: {
@@ -115,20 +116,42 @@ const Form = () => {
         />
 
         <Input
-          {...register('postalCode')}
-          hasError={Boolean(errors.email)}
+          {...register('postalCode', {
+            maxLength: 10,
+            minLength: 5,
+            validate: n => !Number.isNaN(Number(n)),
+          })}
+          hasError={Boolean(errors.postalCode)}
           placeholder="Postal code"
         />
 
+        <Select
+          placeholder="Shipping Option"
+          options={shippingOptions}
+          value={shippingOption}
+          onChange={onShippingOptionChange}
+          theme={theme => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              neutral20: 'var(--color-grey-light)',
+              primary: 'var(--color-primary)',
+            },
+          })}
+        />
+
         <Input
-          {...register('phoneNumber')}
-          hasError={Boolean(errors.email)}
+          {...register('phoneNumber', {
+            maxLength: 11,
+            minLength: 11,
+            validate: n => !Number.isNaN(Number(n)),
+          })}
+          hasError={Boolean(errors.phoneNumber)}
           placeholder="Phone number"
-          className={classes['grid-item--full-width']}
         />
 
         <p className={`p-2 ${classes['form-group__text']}`}>
-          Your phone number will be used to contact you for delivery
+          The only country that we can ship to at the moment is egypt
         </p>
       </div>
 
@@ -137,10 +160,7 @@ const Form = () => {
           Payment information
         </h2>
 
-        <CardNumberElement
-          options={getStripeInputOptions(true)}
-          onReady={() => setIsRendered(true)}
-        />
+        <CardNumberElement options={getStripeInputOptions(true)} />
 
         <CardExpiryElement options={getStripeInputOptions()} />
 
@@ -151,7 +171,7 @@ const Form = () => {
         </p>
       </div>
 
-      <Button type="submit" isLoading={!isRendered}>
+      <Button type="submit" isLoading={!isLoaded || isCapturingOrder}>
         Place order
       </Button>
     </form>

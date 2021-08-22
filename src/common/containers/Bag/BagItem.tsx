@@ -16,7 +16,7 @@ export interface BagItemProps {
   price: number;
   quantity: number;
   available: number;
-  isSelected: boolean;
+  disabled: boolean;
   onRemove: () => Promise<void>;
   onQuantityChange: (change: number) => Promise<void>;
 }
@@ -27,7 +27,7 @@ const BagItem: React.FC<BagItemProps> = ({
   price,
   quantity,
   available,
-  isSelected,
+  disabled,
   onRemove,
   onQuantityChange,
 }) => {
@@ -67,7 +67,7 @@ const BagItem: React.FC<BagItemProps> = ({
         <div className={classes['quantity-controller']}>
           <IconButton
             variant="secondary"
-            disabled={quantity === available || isSelected || isLoading}
+            disabled={quantity === available || disabled || isLoading}
             onClick={() => quantityChangeHandler(1)}
           >
             <PlusIcon />
@@ -75,7 +75,7 @@ const BagItem: React.FC<BagItemProps> = ({
           <span>{quantity}</span>
           <IconButton
             variant="secondary"
-            disabled={quantity === 1 || isSelected || isLoading}
+            disabled={quantity === 1 || disabled || isLoading}
             onClick={() => quantityChangeHandler(-1)}
           >
             <SubIcon />
@@ -92,6 +92,7 @@ const BagItem: React.FC<BagItemProps> = ({
             }
             if (!isUnmounted) setIsLoading(false);
           }}
+          disabled={disabled}
         >
           <TrashIcon />
         </IconButton>

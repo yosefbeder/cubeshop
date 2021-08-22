@@ -37,7 +37,7 @@ const Product = () => {
   const bag = useAppSelector(state => state.bag.data)!;
   const bagIsLoaded = useAppSelector(state => state.bag.status) === 'loaded';
   const quantityInBag =
-    bag.items.find(item => item.productId === id)?.quantity || 0;
+    bag?.items.find(item => item.productId === id)?.quantity || 0;
 
   // local state
   const [selectedImg, setSelectedImg] = useState(0);
