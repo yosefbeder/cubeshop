@@ -34,8 +34,14 @@ export const getAllProducts = async (): Promise<ProductType[]> => {
 export const getBag = async (products: ProductType[]): Promise<BagType> => {
   const request = await commerce.cart.retrieve();
 
-  const bagItems: BagItemType[] = request.line_items.map((item, index) => {
-    const { id: productId, name, price, available, imgSrcs } = products[index];
+  const bagItems: BagItemType[] = request.line_items.map(item => {
+    const {
+      id: productId,
+      name,
+      price,
+      available,
+      imgSrcs,
+    } = products.find(product => product.id === item.product_id)!;
 
     return {
       id: item.id,
