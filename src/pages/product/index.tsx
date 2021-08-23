@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './product.module.css';
 import IconButton from '../../common/components/IconButton';
 import { IoHeart, IoHeartOutline, IoLinkOutline } from 'react-icons/io5';
@@ -8,14 +8,14 @@ import { formatPriceEGP } from '../../utils/numbers';
 import Layout from '../../common/containers/Layout';
 import { useHistory, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions as productsActions } from '../../store/products';
 import { commerce } from '../../api/commerce';
 import { actions as bagActions } from '../../store/bag';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { homepage } from '../../../package.json';
 
-const homepageURL = process.env.REACT_APP_HOMEPAGE as string;
+console.log(homepage);
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -118,7 +118,7 @@ const Product = () => {
           </IconButton>
           <CopyToClipboard
             onCopy={() => setIsCopied(true)}
-            text={`${homepageURL}/products/${id}`}
+            text={`${homepage}#/products/${id}`}
           >
             <IconButton variant="quaternary" onClick={() => {}}>
               <IoLinkOutline />

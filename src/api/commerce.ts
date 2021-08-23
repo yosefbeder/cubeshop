@@ -1,9 +1,9 @@
 import Commerce from '@chec/commerce.js';
 import { BagItemType, BagType, ProductType } from '../types';
 
-const checPublicKey = process.env.REACT_APP_CHEC_PUBLIC_KEY as string;
+const checPublicKey = process.env.REACT_APP_CHEC_PUBLIC_KEY!;
 
-export const commerce = new Commerce(checPublicKey, true);
+export const commerce = new Commerce(checPublicKey);
 
 // PRODUCTS
 export const getAllProducts = async (): Promise<ProductType[]> => {

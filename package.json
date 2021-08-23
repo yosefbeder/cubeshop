@@ -1,6 +1,7 @@
 {
   "name": "cubeshop",
   "version": "0.1.0",
+  "homepage": "https://yosefbeder.github.io/cubeshop/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",

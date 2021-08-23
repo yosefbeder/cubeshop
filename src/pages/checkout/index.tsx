@@ -14,9 +14,9 @@ import { commerce } from '../../api/commerce';
 import { formatPriceEGP } from '../../utils/numbers';
 import { useHistory } from 'react-router-dom';
 
-const stripePromise = loadStripe(
-  'pk_test_51JPL8oIHAJyY80XCOk8lkmZIflBnbfvZdSqPELxp0myENg9zFj57iFcXJn3sQ6EUR0F1fsOENveBYgSCD5MU1kQp00I57fCoJk',
-);
+const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY!;
+
+const stripePromise = loadStripe(stripePublicKey);
 
 const country = 'EG';
 
@@ -123,8 +123,9 @@ const Checkout = () => {
         '🎉 Succeeded!\nThanks for buying from us 😘.\nThe next step is to check your email 🚀.',
       );
     } catch (err) {
+      setIsCapturingOrder(false);
       alert(
-        '😢 Error\nSomething went wrong while capturing the order :(\nTry again later',
+        '😢 Error\nSomething went wrong while capturing the order :(\nTry again later 😀',
       );
     }
     history.push('/products');
