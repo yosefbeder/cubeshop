@@ -53,7 +53,9 @@ const BagItem: React.FC<BagItemProps> = ({
   return (
     <div className={classes.container}>
       {isLoading ? (
-        <LoadingSpinner size="lg" />
+        <div className={classes['loading-spiner-container']}>
+          <LoadingSpinner size="lg" />
+        </div>
       ) : (
         <img className={classes.img} src={imgSrc} alt={name} />
       )}

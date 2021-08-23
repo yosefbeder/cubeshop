@@ -13,13 +13,10 @@
 
 .container {
   display: flex;
+  gap: var(--space-xl);
 }
 
 @media (max-width: 62em) {
-  .main {
-    padding: 0 2rem;
-  }
-
   .container {
     flex-direction: column-reverse;
   }

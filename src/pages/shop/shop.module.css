@@ -37,3 +37,9 @@
 
   gap: var(--space-lg);
 }
+
+@media (max-width: 28.5em) {
+  .products-container {
+    grid-template-columns: repeat(2, minmax(12.25rem, 1fr));
+  }
+}

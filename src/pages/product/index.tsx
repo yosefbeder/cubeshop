@@ -15,8 +15,6 @@ import { actions as bagActions } from '../../store/bag';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { homepage } from '../../../package.json';
 
-console.log(homepage);
-
 const Product = () => {
   const dispatch = useDispatch();
   const history = useHistory();

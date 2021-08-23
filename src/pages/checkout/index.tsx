@@ -16,6 +16,8 @@ import { useHistory } from 'react-router-dom';
 
 const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY!;
 
+console.log(stripePublicKey);
+
 const stripePromise = loadStripe(stripePublicKey);
 
 const country = 'EG';

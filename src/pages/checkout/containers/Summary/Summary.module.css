@@ -10,7 +10,7 @@
 
 @media (max-width: 62em) {
   .container {
-    margin-bottom: var(--space-xl);
+    flex: 1 0 0;
   }
 }
 

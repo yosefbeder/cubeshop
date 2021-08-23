@@ -13,6 +13,13 @@
   }
 }
 
+@media (max-width: 30em) {
+  .container {
+    width: 100%;
+    padding: 0 var(--space-med);
+  }
+}
+
 .form-group {
   display: grid;
 
