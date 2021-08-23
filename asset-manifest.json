@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cubeshop/static/css/main.963ae724.chunk.css",
-    "main.js": "/cubeshop/static/js/main.1bd62e0b.chunk.js",
-    "main.js.map": "/cubeshop/static/js/main.1bd62e0b.chunk.js.map",
+    "main.js": "/cubeshop/static/js/main.08b5dc27.chunk.js",
+    "main.js.map": "/cubeshop/static/js/main.08b5dc27.chunk.js.map",
     "runtime-main.js": "/cubeshop/static/js/runtime-main.56033c9b.js",
     "runtime-main.js.map": "/cubeshop/static/js/runtime-main.56033c9b.js.map",
     "static/js/2.c762375c.chunk.js": "/cubeshop/static/js/2.c762375c.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.56033c9b.js",
     "static/js/2.c762375c.chunk.js",
     "static/css/main.963ae724.chunk.css",
-    "static/js/main.1bd62e0b.chunk.js"
+    "static/js/main.08b5dc27.chunk.js"
   ]
 }
