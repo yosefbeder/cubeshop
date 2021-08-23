@@ -37,13 +37,14 @@ const Navbar: React.FC<NavbarProps> = ({ bagItems, subtotal }) => {
 
   const closeBag = () => setIsBagShown(false);
 
-  const cartContainerRef = useRef<HTMLDivElement | null>(null);
+  const bagContainerRef = useRef<HTMLDivElement | null>(null);
+  const bagRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onClickOutside = (event: globalThis.MouseEvent) => {
       if (
-        cartContainerRef.current &&
-        !cartContainerRef.current.contains(event.target as Node)
+        bagContainerRef.current &&
+        !bagContainerRef.current.contains(event.target as Node)
       ) {
         closeBag();
       }
@@ -76,13 +77,14 @@ const Navbar: React.FC<NavbarProps> = ({ bagItems, subtotal }) => {
             <NavLink key={index} {...navLinkData} />
           ))}
         </div>
-        <div className={classes['bag-btn-container']} ref={cartContainerRef}>
+        <div className={classes['bag-btn-container']} ref={bagContainerRef}>
           <IconButton onClick={() => setIsBagShown(true)} variant="primary">
             <CartIcon />
           </IconButton>
 
           <CSSTransition
             classNames="fade"
+            nodeRef={bagRef}
             timeout={300}
             in={isBagShown}
             unmountOnExit
