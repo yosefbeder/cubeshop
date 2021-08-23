@@ -82,6 +82,7 @@ const Product = () => {
         <div className={classes['imgs-container']}>
           {imgSrcs.map((imgSrc, index) => (
             <img
+              key={index}
               className={`${classes.img} ${
                 index === selectedImg && classes['img--selected']
               }`}

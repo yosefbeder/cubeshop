@@ -100,6 +100,12 @@
   .imgs-container {
     grid-row: 2 / 3;
     flex-direction: row;
+    align-items: center;
+  }
+
+  .img {
+    height: calc(100% - var(--space-sm));
+    width: calc((100% - var(--space-sm) * 3) / 4);
   }
 
   .details,

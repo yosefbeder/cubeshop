@@ -52,13 +52,11 @@ const BagItem: React.FC<BagItemProps> = ({
 
   return (
     <div className={classes.container}>
-      <div className={classes['img-container']}>
-        {isLoading ? (
-          <LoadingSpinner size="lg" />
-        ) : (
-          <img className={classes.img} src={imgSrc} alt={name} />
-        )}
-      </div>
+      {isLoading ? (
+        <LoadingSpinner size="lg" />
+      ) : (
+        <img className={classes.img} src={imgSrc} alt={name} />
+      )}
       <div className={classes.info}>
         <span className="txt-primary">{name}</span>
         <span className="txt-emphasize">{formatPriceEGP(price)}</span>

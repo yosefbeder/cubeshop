@@ -1,16 +1,3 @@
-import React from 'react';
+import NotAvailable from '../../common/containers/NotAvailable';
 
-const index = () => {
-  return (
-    <>
-      <h2
-        className="header-2"
-        style={{ width: 'max-content', margin: '1rem auto' }}
-      >
-        This page is still under development
-      </h2>
-    </>
-  );
-};
-
-export default index;
+export default NotAvailable;

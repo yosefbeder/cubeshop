@@ -39,11 +39,11 @@ const Bag: React.FC<BagProps> = ({ items, subtotal, onClose, className }) => {
     >
       <div className={classes.header}>
         <h3 className="header-3">Your shopping bag</h3>
-        <IconButton onClick={onContinueShopping} variant="tertiary">
+        <IconButton onClick={onClose} variant="tertiary">
           <IoClose />
         </IconButton>
       </div>
-      <div className={classes.summary}>
+      <div>
         {items.length === 0 ? (
           <p className="p-1">There's nothing in your bag yet.</p>
         ) : (

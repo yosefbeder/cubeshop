@@ -24,9 +24,7 @@ const Product: React.FC<ProductProps> = ({
 
   return (
     <div className={classes.container}>
-      <div className={classes['img-container']} onClick={onClick}>
-        <img className={classes.img} src={imgSrc} alt={name} />
-      </div>
+      <img className={classes.img} src={imgSrc} alt={name} />
       <div className={classes.info}>
         <p className={`txt-primary ${classes.name}`} onClick={onClick}>
           {name}

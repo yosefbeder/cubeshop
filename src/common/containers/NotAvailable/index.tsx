@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import Button from '../../common/components/Button';
+import { useHistory } from 'react-router-dom';
+import Button from '../../components/Button';
 
-const NotFound = () => {
+const NotAvailable = () => {
   const history = useHistory();
 
   return (
@@ -11,16 +11,16 @@ const NotFound = () => {
         className="header-2"
         style={{ width: 'max-content', margin: '1rem auto' }}
       >
-        404: This page doesn't exist
+        This page isn't available at the moment
       </h2>
       <Button
         style={{ width: 'max-content', margin: '1rem auto', padding: '0 1rem' }}
-        onClick={() => history.replace('/products')}
+        onClick={() => history.push('/products')}
       >
-        Go to the shop
+        Go the shop
       </Button>
     </>
   );
 };
 
-export default NotFound;
+export default NotAvailable;
