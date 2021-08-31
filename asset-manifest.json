@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/cubeshop/static/css/main.8c41a650.chunk.css",
-    "main.js": "/cubeshop/static/js/main.3630105a.chunk.js",
-    "main.js.map": "/cubeshop/static/js/main.3630105a.chunk.js.map",
+    "main.js": "/cubeshop/static/js/main.dcf6da50.chunk.js",
+    "main.js.map": "/cubeshop/static/js/main.dcf6da50.chunk.js.map",
     "runtime-main.js": "/cubeshop/static/js/runtime-main.56033c9b.js",
     "runtime-main.js.map": "/cubeshop/static/js/runtime-main.56033c9b.js.map",
-    "static/js/2.54faf244.chunk.js": "/cubeshop/static/js/2.54faf244.chunk.js",
-    "static/js/2.54faf244.chunk.js.map": "/cubeshop/static/js/2.54faf244.chunk.js.map",
+    "static/js/2.4c4ed99a.chunk.js": "/cubeshop/static/js/2.4c4ed99a.chunk.js",
+    "static/js/2.4c4ed99a.chunk.js.map": "/cubeshop/static/js/2.4c4ed99a.chunk.js.map",
     "index.html": "/cubeshop/index.html",
     "static/css/main.8c41a650.chunk.css.map": "/cubeshop/static/css/main.8c41a650.chunk.css.map",
-    "static/js/2.54faf244.chunk.js.LICENSE.txt": "/cubeshop/static/js/2.54faf244.chunk.js.LICENSE.txt"
+    "static/js/2.4c4ed99a.chunk.js.LICENSE.txt": "/cubeshop/static/js/2.4c4ed99a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.56033c9b.js",
-    "static/js/2.54faf244.chunk.js",
+    "static/js/2.4c4ed99a.chunk.js",
     "static/css/main.8c41a650.chunk.css",
-    "static/js/main.3630105a.chunk.js"
+    "static/js/main.dcf6da50.chunk.js"
   ]
 }
