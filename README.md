@@ -2,10 +2,8 @@
 
 A simple E-commerce app made with [commerce.js](https://commercejs.com/).
 
-I had a lot of fun programming this app, it isn't totally finished.
+I had a lot of fun programming this app.
 
-I didn't handle the payment, because I don't have a bank card yet 😢.
+I just had one problem which is that commerce SDK type declarations doesn't work well with the ways mentioned in the docs, so I had to change them which wasn't a good development experience.
 
-And the app takes a lot of time to render, because I render the app when the all of the data is fetched.
-
-But, I hope you like it 😀.
+In this project I tried to practice git as much as I can.
