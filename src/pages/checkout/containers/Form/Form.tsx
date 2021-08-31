@@ -4,21 +4,10 @@ import Input from '../../../../common/components/Input';
 import { FormState } from '../..';
 import Select from 'react-select';
 import Button from '../../../../common/components/Button';
-import {
-  CardNumberElement,
-  CardCvcElement,
-  CardExpiryElement,
-} from '@stripe/react-stripe-js';
+import { CardElement } from '@stripe/react-stripe-js';
 import { UseFormReturn } from 'react-hook-form';
 import { OptionTypeBase } from 'react-select';
-
-const getStripeInputOptions = (fullWidth: boolean = false) => ({
-  classes: {
-    invalid: 'stripe-input--invalid',
-    focus: 'stripe-input--focus',
-    base: `stripe-input ${fullWidth && classes['grid-item--full-width']}`,
-  },
-});
+import { Stripe, StripeElements } from '@stripe/stripe-js';
 
 interface FormProps {
   formMethods: UseFormReturn<FormState>;
@@ -31,6 +20,8 @@ interface FormProps {
   shippingOptions: OptionTypeBase[];
   shippingOption: OptionTypeBase | null;
   onShippingOptionChange: (selectedValue: OptionTypeBase) => void;
+  stripe: Stripe | null;
+  elements: StripeElements | null;
 }
 
 const Form: React.FC<FormProps> = ({
@@ -44,6 +35,8 @@ const Form: React.FC<FormProps> = ({
   shippingOption,
   onShippingOptionChange,
   onSubmit,
+  stripe,
+  elements,
 }) => {
   const {
     register,
@@ -160,18 +153,25 @@ const Form: React.FC<FormProps> = ({
           Payment information
         </h2>
 
-        <CardNumberElement options={getStripeInputOptions(true)} />
-
-        <CardExpiryElement options={getStripeInputOptions()} />
-
-        <CardCvcElement options={getStripeInputOptions()} />
+        <CardElement
+          options={{
+            classes: {
+              invalid: 'stripe-input--invalid',
+              focus: 'stripe-input--focus',
+              base: `stripe-input ${classes['grid-item--full-width']}`,
+            },
+          }}
+        />
 
         <p className={`p-2 ${classes['form-group__text']}`}>
           This form is encrypted by stripe
         </p>
       </div>
 
-      <Button type="submit" isLoading={!isLoaded || isCapturingOrder}>
+      <Button
+        type="submit"
+        isLoading={!isLoaded || isCapturingOrder || !stripe || !elements}
+      >
         Place order
       </Button>
     </form>
