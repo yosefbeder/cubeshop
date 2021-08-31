@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Form, Summary } from './containers';
 import classes from './checkout.module.css';
 import { loadStripe, Stripe, StripeElements } from '@stripe/stripe-js';
-import { Elements, ElementsConsumer } from '@stripe/react-stripe-js';
+import {
+  Elements,
+  ElementsConsumer,
+  CardElement,
+} from '@stripe/react-stripe-js';
 import Layout from '../../common/containers/Layout';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useEffect } from 'react';
@@ -15,8 +19,6 @@ import { formatPriceEGP } from '../../utils/numbers';
 import { useHistory } from 'react-router-dom';
 
 const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY!;
-
-console.log(stripePublicKey);
 
 const stripePromise = loadStripe(stripePublicKey);
 
@@ -58,6 +60,7 @@ const Checkout = () => {
     null,
   );
   const [shippingOptions, setShippingOptions] = useState<OptionTypeBase[]>([]);
+  const [phoneFieldId, setPhoneFieldId] = useState<string | null>(null);
 
   const onFormSubmit = async (
     stripe: Stripe | null,
@@ -72,7 +75,14 @@ const Checkout = () => {
       postalCode,
     }: FormState,
   ) => {
-    // stripe payment handling code...
+    const cardElement = elements!.getElement(CardElement)!;
+
+    const { paymentMethod, error } = await stripe!.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+    });
+
+    if (error) return;
 
     const line_items: { [key: string]: { quantity: number } } = {};
 
@@ -91,7 +101,6 @@ const Checkout = () => {
           firstname: firstName,
           lastname: lastName,
           email,
-          phone: `+2${phoneNumber}`,
         },
         shipping: {
           name: `${firstName} ${lastName}`,
@@ -104,15 +113,13 @@ const Checkout = () => {
         fulfillment: {
           shipping_method: shippingOption!.value.id,
         },
-        // ! payment isn't handled
+        extra_fields: {
+          [phoneFieldId!]: `+2${phoneNumber}`,
+        },
         payment: {
-          gateway: 'test_gateway',
-          card: {
-            number: '4242424242424242',
-            expiry_month: '02',
-            expiry_year: '24',
-            cvc: '123',
-            postal_zip_code: postalCode,
+          gateway: 'stripe',
+          stripe: {
+            payment_method_id: paymentMethod!.id,
           },
         },
       });
@@ -146,6 +153,8 @@ const Checkout = () => {
             type: 'cart',
           });
 
+          console.log(checkoutToken.extra_fields);
+
           const subdivisions = Object.entries(
             (await commerce.services.localeListSubdivisions(country))
               .subdivisions,
@@ -161,6 +170,7 @@ const Checkout = () => {
             }),
           );
 
+          setPhoneFieldId(checkoutToken.extra_fields[0].id);
           setSubdivisions(subdivisions);
           setShippingOptions(shippingOptions);
           setSubdivision(subdivisions[0]);
@@ -198,6 +208,8 @@ const Checkout = () => {
                     shippingOption,
                     onShippingOptionChange: selectedValue =>
                       setShippingOption(selectedValue),
+                    stripe,
+                    elements,
                   }}
                 />
               )}
